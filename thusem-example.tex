@@ -1,0 +1,56 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = xelatexmk
+% Minimal example for the thusem beamer theme. Compile with XeLaTeX.
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme{thusem}
+
+\title[Short title]{Presentation Title}
+\subtitle{Subtitle or occasion}
+\author[Author]{Author Name}
+\institute{School of Economics and Management, Tsinghua University}
+\date{2026-09-19}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Frame title}{optional subtitle}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{Block}
+      \begin{itemize}
+        \item First point
+        \item Second point
+          \begin{itemize}
+            \item Sub-point
+          \end{itemize}
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{exampleblock}{Example block}
+      $U_j = v(x_j) + R\big(v(x_j) - v(x_k)\big)$
+    \end{exampleblock}
+    \begin{alertblock}{Alert block}
+      \alert{Highlighted} text uses Orange 60.
+    \end{alertblock}
+  \end{columns}
+  \vskip 6pt
+  \begin{table}
+    \centering
+    \caption{A three-line table}
+    \begin{tabular}{lcc}
+      \toprule
+      Item & A & B \\
+      \midrule
+      Row 1 & 0.12 & 0.34 \\
+      Row 2 & 0.56 & 0.78 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\thusemclosing{Thank you}{Questions and comments are welcome}
+
+\end{document}

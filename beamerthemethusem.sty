@@ -1,0 +1,221 @@
+%% beamerthemethusem.sty
+%%
+%% Tsinghua SEM "Oriental Blue" beamer theme.
+%%
+%% Colour, logo and layout follow the Tsinghua University School of
+%% Economics and Management Visual Identity Guidelines (2021 edition):
+%%   - standard colour  Oriental Blue  #0000A8  (PANTONE Blue 072)
+%%   - auxiliary colours from the official extended palette
+%%   - fonts: Microsoft YaHei for all Chinese, Arial for Latin letters and
+%%     digits, math untouched; YaHei is loaded from the Word bundle on macOS.
+%% The layout follows the classic academic beamer look (Madrid / thubeamer):
+%% solid title bar, rounded blocks with shadows, rounded title box.
+%%
+%% Structure adapted from thubeamer (Jingxuan Yang, LPPL 1.3c) and the
+%% tuna/THU-Beamer-Theme project.  Compile with XeLaTeX.
+%%
+%% Options
+%%   en          do not load ctex (pure-English slides)
+%%   noemblem    no emblem in the frame-title bar
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemethusem}[2026/09/19 v1.0 Tsinghua SEM Oriental Blue beamer theme]
+
+\RequirePackage{tikz}
+\RequirePackage{booktabs}
+\RequirePackage{fontspec}
+
+\newif\ifthusem@en
+\newif\ifthusem@emblem
+\thusem@emblemtrue
+\DeclareOptionBeamer{en}{\thusem@entrue}
+\DeclareOptionBeamer{noemblem}{\thusem@emblemfalse}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+% ---------------------------------------------------------------------------
+% Fonts
+%   all text : Microsoft YaHei (Chinese) + Arial (Latin letters and digits)
+%   math     : newtxmath (Times-like), \mathcal from rsfs
+% Microsoft YaHei is the Word font; on macOS it lives in the Word bundle,
+% so it is loaded by file from \thusemwordfontpath. Override the path
+% before \usetheme if Word is installed elsewhere.
+% ---------------------------------------------------------------------------
+\providecommand{\thusemwordfontpath}{/Applications/Microsoft Word.app/Contents/Resources/DFonts/}
+\ifthusem@en\else
+  \RequirePackage[fontset=none,scheme=plain]{ctex}
+  % Microsoft YaHei ships a real bold face (msyhbd.ttc).
+  \IfFileExists{\thusemwordfontpath msyh.ttc}{%
+    \setCJKmainfont[Path=\thusemwordfontpath,BoldFont=msyhbd.ttc]{msyh.ttc}%
+    \setCJKsansfont[Path=\thusemwordfontpath,BoldFont=msyhbd.ttc]{msyh.ttc}%
+  }{%
+    \setCJKmainfont{Microsoft YaHei}%
+    \setCJKsansfont{Microsoft YaHei}%
+  }
+\fi
+% Text is set in the sans family (Arial). The roman family is only used
+% inside math (\mathrm, digits, operator names) and matches newtxmath.
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\usefonttheme[onlymath]{serif}
+% Math in the Times-like newtx fonts (same as thuthesis math-font=newtx),
+% with the rsfs script alphabet for \mathcal.
+\RequirePackage{newtxmath}
+\DeclareMathAlphabet{\mathcal}{U}{rsfs}{m}{n}
+
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\normalsize,series=\mdseries}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\small,series=\mdseries}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{block title example}{size=\normalsize,series=\bfseries}
+\setbeamerfont{block title alerted}{size=\normalsize,series=\bfseries}
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamerfont{footline}{size=\tiny}
+
+% ---------------------------------------------------------------------------
+% Colours (SEM Visual Identity Guidelines 2021, section 1.2)
+% ---------------------------------------------------------------------------
+\definecolor{thusemBlue}{HTML}{0000A8}     % Oriental Blue (Blue 90)
+\definecolor{thusemBlue100}{HTML}{000077}  % Blue 100
+\definecolor{thusemBlue80}{HTML}{141ED2}   % Blue 80
+\definecolor{thusemBlue60}{HTML}{0F64FF}   % Blue 60
+\definecolor{thusemBlue40}{HTML}{77A8FF}   % Blue 40
+\definecolor{thusemBlue20}{HTML}{D1E2FF}   % Blue 20
+\definecolor{thusemBlue10}{HTML}{EDF4FF}   % Blue 10
+\definecolor{thusemOrange}{HTML}{F57C00}   % Orange 60 (accent)
+\definecolor{thusemGray}{HTML}{A6A6A6}     % neutral grey for footline text
+\definecolor{thusemText}{HTML}{1A1A1A}
+
+\setbeamercolor{normal text}{fg=thusemText,bg=white}
+\setbeamercolor{structure}{fg=thusemBlue}
+\setbeamercolor{alerted text}{fg=thusemOrange}
+\setbeamercolor{example text}{fg=thusemBlue60}
+
+\setbeamercolor{title}{fg=white,bg=thusemBlue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=thusemBlue}
+\setbeamercolor{institute}{fg=thusemText}
+\setbeamercolor{date}{fg=thusemText}
+
+\setbeamercolor{frametitle}{fg=white,bg=thusemBlue}
+\setbeamercolor{framesubtitle}{fg=white}
+
+\setbeamercolor{block title}{fg=white,bg=thusemBlue}
+\setbeamercolor{block body}{fg=thusemText,bg=thusemBlue10}
+\setbeamercolor{block title example}{fg=white,bg=thusemBlue60}
+\setbeamercolor{block body example}{fg=thusemText,bg=thusemBlue10}
+\setbeamercolor{block title alerted}{fg=white,bg=thusemOrange}
+\setbeamercolor{block body alerted}{fg=thusemText,bg=thusemOrange!8!white}
+
+\setbeamercolor{item}{fg=thusemBlue}
+\setbeamercolor{subitem}{fg=thusemBlue80}
+\setbeamercolor{enumerate item}{fg=thusemBlue}
+\setbeamercolor{caption name}{fg=thusemBlue}
+\setbeamercolor{caption}{fg=thusemText}
+\setbeamercolor{footline}{fg=thusemGray!70!black}
+\setbeamercolor{frame number}{fg=thusemBlue}
+\setbeamercolor{section in toc}{fg=thusemBlue}
+\setbeamercolor{bibliography entry author}{fg=thusemText}
+\setbeamercolor{bibliography entry title}{fg=thusemText}
+\setbeamercolor{bibliography entry note}{fg=thusemText}
+
+% ---------------------------------------------------------------------------
+% Inner elements
+% ---------------------------------------------------------------------------
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{caption}{%
+  \usebeamercolor[fg]{caption}\usebeamerfont{caption}\insertcaption\par}
+\setbeamersize{text margin left=0.9cm,text margin right=0.9cm}
+\setlength{\leftmargini}{1.2em}
+
+% ---------------------------------------------------------------------------
+% Title page
+% ---------------------------------------------------------------------------
+\titlegraphic{\includegraphics[height=1.4cm]{thusem-emblem}}
+% Classic beamer title page: rounded, shadowed title box (as in the
+% "rounded" inner theme), then author, institute, date and the emblem.
+\setbeamertemplate{title page}{%
+  \vbox{}%
+  \vskip 0.08\paperheight
+  \begin{centering}
+    \begin{beamercolorbox}[sep=10pt,center,rounded=true,shadow=true]{title}%
+      \usebeamerfont{title}\inserttitle\par
+      \ifx\insertsubtitle\@empty\else
+        \vskip 0.5em
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi
+    \end{beamercolorbox}%
+    \vskip 1.4em
+    \begin{beamercolorbox}[sep=4pt,center]{author}%
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[sep=4pt,center]{institute}%
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[sep=4pt,center]{date}%
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}%
+    \vfill
+    \inserttitlegraphic\par
+  \end{centering}%
+  \vskip 6pt
+}
+
+% ---------------------------------------------------------------------------
+% Frame title: solid blue bar spanning the paper
+% ---------------------------------------------------------------------------
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3.0ex,dp=1.3ex,%
+      leftskip=0.9cm,rightskip=0.6cm plus1fil]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \ifx\insertframesubtitle\@empty\else
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+       \hskip 1em\insertframesubtitle}%
+    \fi
+    \hfill
+    \ifthusem@emblem
+      \raisebox{-0.75ex}{\includegraphics[height=3.2ex]{thusem-emblem-white}}%
+    \fi
+  \end{beamercolorbox}%
+  \vskip 4pt
+}
+
+% ---------------------------------------------------------------------------
+% Foot line: short title left, frame number right
+% ---------------------------------------------------------------------------
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox to \paperwidth{%
+    \hfill
+    {\usebeamerfont{footline}\usebeamercolor[fg]{frame number}%
+     \insertframenumber\,/\,\inserttotalframenumber}%
+    \hskip 0.9cm
+  }%
+  \vskip 6pt
+}
+
+% ---------------------------------------------------------------------------
+% Closing frame helper: \thusemclosing{main line}{sub line}
+% ---------------------------------------------------------------------------
+\newcommand{\thusemclosing}[2]{%
+  \let\thusem@savedtitle\inserttitle
+  \let\thusem@savedsubtitle\insertsubtitle
+  \def\inserttitle{#1}\def\insertsubtitle{#2}%
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}%
+  \let\inserttitle\thusem@savedtitle
+  \let\insertsubtitle\thusem@savedsubtitle
+}
+
+\mode<all>
+\endinput
