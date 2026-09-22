@@ -19,6 +19,9 @@ thusem-emblem-white.pdf    经管院院徽，反白（用于标题栏）
 thusem-logo-wide.png       院徽 + SEM + 全称横向组合（可选）
 thusem-logo-wide-white.png 上一文件的反白版（可选）
 thusem-example.tex         最小示例
+thusem-example.pdf         示例编译结果
+README.md                  本页英文版
+LICENSE                    LPPL 1.3c 许可证
 ```
 
 ## 用法

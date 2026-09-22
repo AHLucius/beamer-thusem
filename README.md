@@ -31,6 +31,9 @@ thusem-emblem-white.pdf    SEM emblem, white (used in the frame-title bar)
 thusem-logo-wide.png       emblem + SEM + full name, horizontal (optional)
 thusem-logo-wide-white.png white version of the above (optional)
 thusem-example.tex         minimal example
+thusem-example.pdf         compiled example
+README.zh-CN.md            this page in Chinese
+LICENSE                    LPPL 1.3c
 ```
 
 ## Usage
