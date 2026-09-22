@@ -1,47 +1,34 @@
 # beamer-thusem
 
-**English** | [简体中文](README.zh-CN.md)
+**简体中文** | [English](README.en.md)
 
-Personal beamer theme in the Tsinghua SEM "Oriental Blue" identity.
+清华大学经济管理学院“东方蓝”视觉风格的个人 beamer 主题。
 
-- Standard colour `#0000A8` (PANTONE Blue 072) and the blue auxiliary
-  palette (Blue 10/20/40/60/80/100) from the SEM Visual Identity
-  Guidelines (2021 edition). Alerts use Orange 60 as the single accent;
-  example blocks use Blue 60.
-- Classic academic beamer layout (Madrid / thubeamer style): solid blue
-  title bar with the emblem, rounded blocks with shadows, rounded title
-  box, circle bullets, frame number in the footline.
-- Vector SEM emblem converted from the official SVG (`thusem-emblem.pdf`,
-  `thusem-emblem-white.pdf`); wide logo PNGs kept for optional use.
-- Fonts: Microsoft YaHei for all Chinese text, Arial for Latin letters
-  and digits; math in newtxmath (Times-like, matching thuthesis) with
-  the rsfs script alphabet for `\mathcal`. YaHei is read
-  from the Word bundle (`\thusemwordfontpath`, default
-  `/Applications/Microsoft Word.app/Contents/Resources/DFonts/`);
-  redefine that macro before `\usetheme` if Word lives elsewhere.
-- Structure adapted from `thubeamer` (CTAN, LPPL 1.3c) and
-  `tuna/THU-Beamer-Theme`.
+- 主色为经管院标准色 `#0000A8`（PANTONE Blue 072），辅色采用《清华大学经济管理学院视觉形象指导手册（2021 版）》中的蓝色系列（Blue 10/20/40/60/80/100）。强调色仅用 Orange 60 一种；example block 用 Blue 60。
+- 版式为常规学术 beamer 风格（近似 Madrid / thubeamer）：蓝色实心标题栏并带院徽，圆角阴影 block，圆角封面标题框，圆点项目符，页脚仅显示页码。
+- 院徽由官方 SVG 转为矢量 PDF（`thusem-emblem.pdf`、`thusem-emblem-white.pdf`），另附横向组合 logo 的 PNG 供选用。
+- 字体：中文全部为微软雅黑，字母和数字为 Arial；公式使用 newtxmath（Times 风格，与 thuthesis 一致），花体 `\mathcal` 取自 rsfs。微软雅黑从 Word 自带字体目录读取（宏 `\thusemwordfontpath`，默认 `/Applications/Microsoft Word.app/Contents/Resources/DFonts/`）；若 Word 安装在其他位置，请在 `\usetheme` 之前重新定义该宏。
+- 结构参考了 `thubeamer`（CTAN，LPPL 1.3c）与 `tuna/THU-Beamer-Theme`。
 
-## Files
+## 文件
 
 ```
-beamerthemethusem.sty      the theme
-thusem-emblem.pdf          SEM emblem, Oriental Blue
-thusem-emblem-white.pdf    SEM emblem, white (used in the frame-title bar)
-thusem-logo-wide.png       emblem + SEM + full name, horizontal (optional)
-thusem-logo-wide-white.png white version of the above (optional)
-thusem-example.tex         minimal example
-thusem-example.pdf         compiled example
-README.zh-CN.md            this page in Chinese
-LICENSE                    LPPL 1.3c
+beamerthemethusem.sty      主题文件
+thusem-emblem.pdf          经管院院徽，东方蓝
+thusem-emblem-white.pdf    经管院院徽，反白（用于标题栏）
+thusem-logo-wide.png       院徽 + SEM + 全称横向组合（可选）
+thusem-logo-wide-white.png 上一文件的反白版（可选）
+thusem-example.tex         最小示例
+thusem-example.pdf         示例编译结果
+README.en.md               本页英文版
+LICENSE                    LPPL 1.3c 许可证
 ```
 
-## Usage
+## 用法
 
-Compile with XeLaTeX (latexmk: `latexmk -pdfxe file.tex`).
+使用 XeLaTeX 编译（latexmk：`latexmk -pdfxe file.tex`）。
 
-Either copy the `.sty` and the two emblem PDFs next to your slides, or
-point LaTeX at this folder from the top of the document:
+可以把 `.sty` 和两个院徽 PDF 复制到幻灯片所在目录，也可以在文档开头指定本目录的路径：
 
 ```latex
 \makeatletter
@@ -49,23 +36,15 @@ point LaTeX at this folder from the top of the document:
 \g@addto@macro\input@path{{/path/to/beamer-thusem/}}
 \makeatother
 \documentclass[aspectratio=169,10pt]{beamer}
-\usetheme{thusem}          % options: en, noemblem
+\usetheme{thusem}          % 可选参数：en, noemblem
 ```
 
-Helpers:
+辅助命令：
 
-- `\thusemclosing{<main line>}{<sub line>}` produces the closing frame
-  in the same layout as the title page (author, institute and date are
-  repeated).
-- Footline shows the frame number only.
-- Colours `thusemBlue`, `thusemBlue100`, `thusemBlue80`, `thusemBlue60`,
-  `thusemBlue40`, `thusemBlue20`, `thusemBlue10`, `thusemOrange`, `thusemGray` are
-  available.
+- `\thusemclosing{<主标题>}{<副标题>}` 生成与封面同一版式的封底（作者、单位、日期会重复显示）。
+- 页脚只显示页码。
+- 可用颜色：`thusemBlue`、`thusemBlue100`、`thusemBlue80`、`thusemBlue60`、`thusemBlue40`、`thusemBlue20`、`thusemBlue10`、`thusemOrange`、`thusemGray`。
 
-## License
+## 许可
 
-The theme files (`beamerthemethusem.sty`, `thusem-example.tex`) are
-released under the LaTeX Project Public License 1.3c; see `LICENSE`.
-The SEM emblem and logo files are trademarks of the School of Economics
-and Management, Tsinghua University, and are included only for use by
-members of the school; they are not covered by the LPPL.
+主题文件（`beamerthemethusem.sty`、`thusem-example.tex`）按 LaTeX Project Public License 1.3c 发布，见 `LICENSE`。院徽和 logo 文件为清华大学经济管理学院的标识，仅供本院师生使用，不在 LPPL 覆盖范围内。
