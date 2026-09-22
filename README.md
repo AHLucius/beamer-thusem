@@ -1,5 +1,7 @@
 # beamer-thusem
 
+**English** | [简体中文](README.zh-CN.md)
+
 Personal beamer theme in the Tsinghua SEM "Oriental Blue" identity.
 
 - Standard colour `#0000A8` (PANTONE Blue 072) and the blue auxiliary
@@ -13,7 +15,7 @@ Personal beamer theme in the Tsinghua SEM "Oriental Blue" identity.
   `thusem-emblem-white.pdf`); wide logo PNGs kept for optional use.
 - Fonts: Microsoft YaHei for all Chinese text, Arial for Latin letters
   and digits; math in newtxmath (Times-like, matching thuthesis) with
-  the rsfs script alphabet for `\\mathcal`. YaHei is read
+  the rsfs script alphabet for `\mathcal`. YaHei is read
   from the Word bundle (`\thusemwordfontpath`, default
   `/Applications/Microsoft Word.app/Contents/Resources/DFonts/`);
   redefine that macro before `\usetheme` if Word lives elsewhere.
@@ -41,7 +43,7 @@ point LaTeX at this folder from the top of the document:
 ```latex
 \makeatletter
 \providecommand*{\input@path}{}
-\g@addto@macro\input@path{{/Users/lucius/Dropbox/Documents/Thesis/beamer-thusem/}}
+\g@addto@macro\input@path{{/path/to/beamer-thusem/}}
 \makeatother
 \documentclass[aspectratio=169,10pt]{beamer}
 \usetheme{thusem}          % options: en, noemblem
